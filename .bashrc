@@ -9,6 +9,7 @@ export PATH=$PATH:~/protoc-3.2.0-osx-x86_64/bin
 
 # git settings
 source /usr/local/etc/bash_completion.d/git-prompt.sh
+export PATH=$PATH:~/shellutils
 # source /usr/local/git/contrib/completion/git-completion.bash
 source ~/.git-completion.bash
 GIT_PS1_SHOWDIRTYSTATE=true

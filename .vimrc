@@ -427,6 +427,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
 
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_blade_checkers = []
@@ -462,9 +463,10 @@ exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 " set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
+"" syntasticでエラー行にマークをつける
 let g:syntastic_mode_map = { 'mode': 'passive',
     \ 'active_filetypes': ['go'] }
-let g:syntastic_go_checkers = ['golint']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 let g:go_list_type = "quickfix"
 
 let g:go_fmt_command = "goimports"
@@ -519,6 +521,7 @@ let g:go_fmt_command = "goimports"
 :syntax on
 
 autocmd FileType go autocmd BufWritePre  Fmt
+
 set rtp+=$GOPATH/src/github.com/nsf/gocode/vim
 set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 set completeopt=menu,preview
@@ -529,3 +532,7 @@ au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
+"" au BufWritePre *.{go} :GoBuild
+au FileType go :highlight goErr cterm=bold ctermfg=214
+au FileType go :match goErr /\<err\>/
+
