@@ -463,10 +463,10 @@ exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 " set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
 
+let g:syntastic_aggregate_errors = 1
 "" syntasticでエラー行にマークをつける
-let g:syntastic_mode_map = { 'mode': 'passive',
-    \ 'active_filetypes': ['go'] }
-let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['go'] }
+let g:syntastic_go_checkers = ['golint']
 let g:go_list_type = "quickfix"
 
 let g:go_fmt_command = "goimports"
